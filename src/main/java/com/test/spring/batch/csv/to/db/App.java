@@ -10,15 +10,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
 	public static void main(String[] args) {
 
-		String[] springConfig  = 
-			{	"database.xml", 
-				"context.xml",
-				"spring-batch-job-csv-to-db.xml" 
-			};
-		
-		ConfigurableApplicationContext context = 
-				new ClassPathXmlApplicationContext(springConfig);
-		
+		String[] springConfig = { "database.xml", "context.xml", "spring-batch-job-csv-to-db.xml" };
+
+		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(springConfig);
+
 		JobLauncher jobLauncher = (JobLauncher) context.getBean("jobLauncher");
 		Job job = (Job) context.getBean("reportJob");
 
