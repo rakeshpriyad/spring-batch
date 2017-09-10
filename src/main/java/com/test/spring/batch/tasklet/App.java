@@ -1,4 +1,4 @@
-package com.test.spring.batch.hello.world;
+package com.test.spring.batch.tasklet;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
@@ -8,25 +8,36 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
+
 	public static void main(String[] args) {
 
-		String[] springConfig = { "job-hello-world.xml" };
+		App obj = new App();
+		obj.run();
+
+	}
+
+	private void run() {
+
+		String[] springConfig = { "spring-batch-job-tasklet.xml" };
 
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(springConfig);
 
 		JobLauncher jobLauncher = (JobLauncher) context.getBean("jobLauncher");
-		Job job = (Job) context.getBean("helloWorldJob");
+		Job job = (Job) context.getBean("readMultiFileJob");
 
 		try {
 
 			JobExecution execution = jobLauncher.run(job, new JobParameters());
 			System.out.println("Exit Status : " + execution.getStatus());
+			System.out.println("Exit Status : " + execution.getAllFailureExceptions());
 
 		} catch (Exception e) {
 			e.printStackTrace();
+
 		}
 		context.close();
 		System.out.println("Done");
 
 	}
+
 }
