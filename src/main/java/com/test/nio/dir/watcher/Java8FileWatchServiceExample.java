@@ -11,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
-import java.nio.file.StandardCopyOption;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
@@ -103,7 +102,7 @@ public class Java8FileWatchServiceExample {
                     }
                 }*/
 				// print out event
-				System.out.format("%s: %s\n", event.kind().name(), child);
+				System.out.format("%s: %s\n", kind.name(), child);
 
 			}
 		}

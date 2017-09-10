@@ -1,6 +1,4 @@
 package com.test.nio.dir.watcher;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,7 +25,7 @@ public class Main {
            WatchKey watckKey = watcher.take();
 
            List<WatchEvent<?>> events = watckKey.pollEvents();
-           for (WatchEvent event : events) {
+           for (WatchEvent<?> event : events) {
         	   @SuppressWarnings("unchecked")
 				Path name = ((WatchEvent<Path>) event).context();
 				Path child = myDir.resolve(name);
